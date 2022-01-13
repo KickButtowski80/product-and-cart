@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import Products from '../views/Products.vue'
 import PastOrders from '../views/PastOrders'
+// import Sidebar from '../components/Sidebar.vue'
 const routes = [
   {
     path: '/',
@@ -18,6 +19,11 @@ const routes = [
     name: 'PastOrders',
     component: PastOrders
   }
+  // {
+  //   path: '/side-bar',
+  //   name: 'Sidebar',
+  //   component: Sidebar
+  // }
 ]
 
 const router = createRouter({

@@ -12,37 +12,42 @@
         <span>Past Orders</span>
       </router-link>
     </nav>
-    <!-- <router-link @click="toggleSidebar" class="top-bar-cart-link">
+    <div
+    @click="toggleSidebar" class="top-bar-cart-link">
       <i class="icofont-cart-alt icofont-1x"></i>
-      <span>Cart ({{ totalQuantity }})</span>
-    </router-link> -->
+      <span>Cart 0</span>
+      <!-- <span>Cart ({{ totalQuantity }})</span> -->
+    </div>
   </header>
-  <router-view/>
+  <router-view :inventory="inventory" />
+  <Sidebar
+    v-if="showSidebar"
+    :toggle= 'toggleSidebar'
+    :cart = 'cart'
+    :inventory = 'inventory'
+    :remoe = 'remove' />
 </template>
+<script>
 
-<style scoped>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+import Sidebar from './components/Sidebar.vue'
+import food from '@/food.json'
+
+export default {
+  componets: [Sidebar],
+  data () {
+    return {
+      showSidebar: true,
+      inventory: food,
+      cart: {}
+    }
+  },
+  methods: {
+    toggleSidebar () {
+      this.showSidebar = !this.showSidebar
+    }
+  }
 }
+</script>
 
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-   text-decoration: none;
-   margin-right: 5px;
-   border: 1px solid black;
-}
-
+<style>
 </style>
